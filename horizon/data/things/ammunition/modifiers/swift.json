@@ -1,0 +1,12 @@
+{
+  "kind": "modifier",
+  "name": "Swift",
+  "effect": "swift",
+  "duration": 100,
+  "strength": 1,
+  "items": [
+    "minecraft:sugar",
+    "minecraft:rabbit_foot",
+    "minecraft:redstone"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "kind": "modifier",
+  "name": "Slowing",
+  "effect": "slow",
+  "duration": 120,
+  "strength": 1,
+  "items": [
+    "minecraft:honeycomb",
+    "minecraft:honey_bottle",
+    "minecraft:honey_block",
+    "minecraft:cobweb"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "kind": "modifier",
+  "name": "Knockback",
+  "effect": "knockback",
+  "duration": 100,
+  "strength": 1.5,
+  "items": [
+    "minecraft:wind_charge",
+    "minecraft:gunpowder",
+    "minecraft:breeze_rod"
+  ]
+}

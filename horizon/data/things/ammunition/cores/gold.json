@@ -1,0 +1,11 @@
+{
+  "kind": "core",
+  "name": "Gold",
+  "damage": 4,
+  "speed": 0.85,
+  "gravity": 1.35,
+  "color": "f8d34a",
+  "items": [
+    "minecraft:gold_nugget"
+  ]
+}

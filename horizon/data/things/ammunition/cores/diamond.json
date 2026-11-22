@@ -1,0 +1,11 @@
+{
+  "kind": "core",
+  "name": "Diamond",
+  "damage": 6,
+  "speed": 1.1,
+  "gravity": 1,
+  "color": "71e8de",
+  "items": [
+    "minecraft:diamond"
+  ]
+}

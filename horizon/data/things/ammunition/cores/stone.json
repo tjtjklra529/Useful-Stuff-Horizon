@@ -1,0 +1,14 @@
+{
+  "kind": "core",
+  "name": "Stone",
+  "damage": 4,
+  "speed": 0.95,
+  "gravity": 1.1,
+  "color": "888888",
+  "items": [
+    "minecraft:cobblestone",
+    "minecraft:cobbled_deepslate",
+    "minecraft:stone",
+    "minecraft:deepslate"
+  ]
+}

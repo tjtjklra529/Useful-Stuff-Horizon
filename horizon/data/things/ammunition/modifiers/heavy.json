@@ -1,0 +1,12 @@
+{
+  "kind": "modifier",
+  "name": "Weighted",
+  "effect": "weight",
+  "duration": 100,
+  "strength": 1,
+  "items": [
+    "minecraft:iron_ingot",
+    "minecraft:iron_block",
+    "minecraft:copper_block"
+  ]
+}

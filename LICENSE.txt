@@ -1,0 +1,17 @@
+Useful Stuff — Horizon adaptation
+Copyright (c) 2026 tjtjklra529. All rights reserved, except for the following grant.
+
+The author authorizes publication of this adaptation and its source in the
+Horizon mod registry and its linked source/release repository. Horizon
+maintainers and reviewers may inspect, build, check, host, mirror and distribute
+the submitted source packages and release files for the registry and launcher.
+Players may download, inspect, locally build, install and play the mod, and may
+run it on their own servers. The author also authorizes this adaptation to reuse
+the author's original Useful Stuff code, recipes, text and artwork.
+
+This permission does not transfer ownership or grant rights in third-party
+material. The attribution and applicable terms in NOTICE.md remain in effect.
+Other redistribution, relicensing or publication requires the author's consent.
+
+THE MOD IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND. TO THE EXTENT PERMITTED
+BY LAW, THE AUTHOR IS NOT LIABLE FOR CLAIMS OR DAMAGES ARISING FROM ITS USE.

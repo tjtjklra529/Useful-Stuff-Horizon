@@ -1,0 +1,12 @@
+{
+  "kind": "modifier",
+  "name": "Levitating",
+  "effect": "levitation",
+  "duration": 40,
+  "strength": 1,
+  "items": [
+    "minecraft:shulker_shell",
+    "minecraft:chorus_fruit",
+    "minecraft:phantom_membrane"
+  ]
+}

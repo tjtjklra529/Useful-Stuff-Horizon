@@ -1,0 +1,13 @@
+{
+  "kind": "modifier",
+  "name": "Burning",
+  "effect": "fire",
+  "duration": 80,
+  "strength": 1,
+  "items": [
+    "minecraft:blaze_powder",
+    "minecraft:magma_cream",
+    "minecraft:fire_charge",
+    "minecraft:magma_block"
+  ]
+}

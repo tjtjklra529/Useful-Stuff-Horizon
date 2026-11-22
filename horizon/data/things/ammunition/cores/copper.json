@@ -1,0 +1,11 @@
+{
+  "kind": "core",
+  "name": "Copper",
+  "damage": 4.5,
+  "speed": 1,
+  "gravity": 1.05,
+  "color": "ce8058",
+  "items": [
+    "minecraft:copper_ingot"
+  ]
+}

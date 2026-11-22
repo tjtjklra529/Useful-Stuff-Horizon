@@ -1,0 +1,15 @@
+{
+  "kind": "modifier",
+  "name": "Glowing",
+  "effect": "glow",
+  "duration": 200,
+  "strength": 1,
+  "items": [
+    "minecraft:glowstone_dust",
+    "minecraft:glow_ink_sac",
+    "minecraft:glow_berries",
+    "minecraft:glowstone",
+    "minecraft:prismarine_crystals",
+    "minecraft:sea_lantern"
+  ]
+}

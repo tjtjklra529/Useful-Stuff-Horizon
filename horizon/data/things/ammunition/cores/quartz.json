@@ -1,0 +1,11 @@
+{
+  "kind": "core",
+  "name": "Quartz",
+  "damage": 4.5,
+  "speed": 1.15,
+  "gravity": 0.85,
+  "color": "eee6d5",
+  "items": [
+    "minecraft:quartz"
+  ]
+}

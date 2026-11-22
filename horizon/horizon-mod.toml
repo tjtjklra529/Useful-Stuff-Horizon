@@ -1,0 +1,17 @@
+id = "useful_stuff"
+name = "Useful Stuff"
+version = "0.0.1"
+description = "Survival tools, customizable ammunition, a slingshot, quiver and torch pouch."
+authors = ["tjtjklra529"]
+license = "LicenseRef-Useful-Stuff-Horizon"
+credits = "Original mod by tjtjklra529 using MCreator. Horizon adaptation developed with AI assistance."
+homepage = "https://www.curseforge.com/minecraft/mc-mods/useful-stuff-tjtjklra529"
+api = "0.2"
+side = "both"
+capabilities = ["registries"]
+namespaces = ["things"]
+
+[native]
+game = "26.3"
+horizon = "f037744a79f9982c47876f49c5a3067279f88706"
+mixins = "e59da9094f0c2fdda6c627fe9eff22dec6a906f0"

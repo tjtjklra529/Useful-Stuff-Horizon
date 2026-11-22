@@ -1,0 +1,16 @@
+{
+  "slingshot.fire": {
+    "subtitle": "subtitles.things.slingshot_fire",
+    "sounds": [
+      {
+        "name": "things:slingshot/snap1"
+      },
+      {
+        "name": "things:slingshot/snap2"
+      },
+      {
+        "name": "things:slingshot/snap3"
+      }
+    ]
+  }
+}

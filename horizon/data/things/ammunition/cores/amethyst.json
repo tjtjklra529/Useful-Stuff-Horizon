@@ -1,0 +1,11 @@
+{
+  "kind": "core",
+  "name": "Amethyst",
+  "damage": 5,
+  "speed": 1,
+  "gravity": 1,
+  "color": "ae83dc",
+  "items": [
+    "minecraft:amethyst_shard"
+  ]
+}

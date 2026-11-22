@@ -1,0 +1,12 @@
+{
+  "kind": "modifier",
+  "name": "Poisonous",
+  "effect": "poison",
+  "duration": 80,
+  "strength": 1,
+  "items": [
+    "minecraft:spider_eye",
+    "minecraft:pufferfish",
+    "minecraft:poisonous_potato"
+  ]
+}

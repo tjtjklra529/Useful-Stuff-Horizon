@@ -1,0 +1,11 @@
+{
+  "kind": "core",
+  "name": "Clay",
+  "damage": 3,
+  "speed": 1.1,
+  "gravity": 0.8,
+  "color": "a9b4c5",
+  "items": [
+    "minecraft:clay_ball"
+  ]
+}

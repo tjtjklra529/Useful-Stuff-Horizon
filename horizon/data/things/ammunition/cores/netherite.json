@@ -1,0 +1,11 @@
+{
+  "kind": "core",
+  "name": "Netherite",
+  "damage": 7,
+  "speed": 0.9,
+  "gravity": 1.2,
+  "color": "746769",
+  "items": [
+    "minecraft:netherite_scrap"
+  ]
+}

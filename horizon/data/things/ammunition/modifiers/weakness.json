@@ -1,0 +1,12 @@
+{
+  "kind": "modifier",
+  "name": "Weakening",
+  "effect": "weakness",
+  "duration": 120,
+  "strength": 1,
+  "items": [
+    "minecraft:fermented_spider_eye",
+    "minecraft:rotten_flesh",
+    "minecraft:wither_rose"
+  ]
+}

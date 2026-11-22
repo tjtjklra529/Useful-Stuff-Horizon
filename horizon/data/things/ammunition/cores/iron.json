@@ -1,0 +1,11 @@
+{
+  "kind": "core",
+  "name": "Iron",
+  "damage": 5,
+  "speed": 0.95,
+  "gravity": 1.15,
+  "color": "c4c4c4",
+  "items": [
+    "minecraft:iron_nugget"
+  ]
+}

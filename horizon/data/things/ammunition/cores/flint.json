@@ -1,0 +1,11 @@
+{
+  "kind": "core",
+  "name": "Flint",
+  "damage": 4,
+  "speed": 1,
+  "gravity": 1,
+  "color": "929292",
+  "items": [
+    "minecraft:flint"
+  ]
+}

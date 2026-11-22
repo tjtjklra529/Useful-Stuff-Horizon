@@ -1,0 +1,11 @@
+{
+  "kind": "core",
+  "name": "Obsidian",
+  "damage": 6,
+  "speed": 0.8,
+  "gravity": 1.5,
+  "color": "655383",
+  "items": [
+    "minecraft:obsidian"
+  ]
+}

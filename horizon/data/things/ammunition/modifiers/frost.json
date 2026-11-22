@@ -1,0 +1,14 @@
+{
+  "kind": "modifier",
+  "name": "Freezing",
+  "effect": "frost",
+  "duration": 120,
+  "strength": 1,
+  "items": [
+    "minecraft:snowball",
+    "minecraft:ice",
+    "minecraft:packed_ice",
+    "minecraft:blue_ice",
+    "minecraft:snow_block"
+  ]
+}

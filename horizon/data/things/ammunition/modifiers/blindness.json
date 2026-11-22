@@ -1,0 +1,12 @@
+{
+  "kind": "modifier",
+  "name": "Blinding",
+  "effect": "blindness",
+  "duration": 60,
+  "strength": 1,
+  "items": [
+    "minecraft:ink_sac",
+    "minecraft:sculk",
+    "minecraft:sculk_vein"
+  ]
+}
