@@ -47,8 +47,9 @@ jobs:
       - name: Check native code and run pure unit tests
         run: cargo test --manifest-path horizon/Cargo.toml
       - name: Package and check
+        working-directory: horizon
         run: |
-          /tmp/horizon/target/debug/cargo-horizon-mod horizon-mod build horizon
+          /tmp/horizon/target/debug/cargo-horizon-mod horizon-mod build
           find . -name '*.hmod' -not -path '*/.horizon/*' -print
           find . -name '*.hmod' -not -path '*/.horizon/*' -exec /tmp/horizon/target/debug/cargo-horizon-mod horizon-mod check '{}' \;
       - name: Compile against the published game SDK
