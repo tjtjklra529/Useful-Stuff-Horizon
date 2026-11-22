@@ -102,7 +102,7 @@ jobs:
                   if 'build' in v and 'toolchain' in v:sdks.append({'path':str(p),'build':v['build'],'toolchain':v['toolchain'],'surface':v.get('surface')})
               except (OSError,ValueError):pass
           versions=sorted({p.name for p in root.rglob('native-*') if p.is_dir() and re.fullmatch(r'native-[0-9a-f]{7}-[0-9a-f]{12}',p.name)})
-          proof={'declared_sdk':'f037744a79f9982c47876f49c5a3067279f88706','base':base if False else 'nightly-2026-11-22-2b77287','target':'server','native_versions':versions,'sdk_manifests':sdks}
+          proof={'declared_sdk':'f037744a79f9982c47876f49c5a3067279f88706','base':pathlib.Path('installed-base.txt').read_text().split()[1].rstrip('.'),'target':'server','native_versions':versions,'sdk_manifests':sdks}
           pathlib.Path('sdk-provenance.json').write_text(json.dumps(proof,indent=2)+'\n')
           print(json.dumps(proof,indent=2))
           PY
