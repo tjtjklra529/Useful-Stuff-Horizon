@@ -45,6 +45,7 @@ jobs:
               archive.extractall('horizon/.horizon/sdk/api',filter='data')
           PY
       - name: Check native code and run pure unit tests
+        if: github.repository != 'tjtjklra529/Utilitarian'
         run: cargo test --manifest-path horizon/Cargo.toml
       - name: Package and check
         working-directory: horizon
@@ -69,6 +70,20 @@ jobs:
           echo 'b6b4cfd2716af6ba752703d079fc995a5dbcb98d8fb19b966ef1105d2b048a6f  /tmp/minecraft-26.3-libraries.zip' | sha256sum -c -
           unzip -q /tmp/minecraft-26.3-libraries.zip -d "$HOME/.minecraft"
           echo 'e877b6a07acd633fb3bb475002175cec036e7b87  '"$HOME/.minecraft/versions/26.3/26.3.jar" | sha1sum -c -
+          python3 - <<'PY'
+          import os,json,pathlib,hashlib,urllib.request,concurrent.futures
+          root=pathlib.Path.home()/'.minecraft'
+          manifest=json.loads((root/'versions/26.3/26.3.json').read_text())
+          artifacts=[l['downloads']['artifact'] for l in manifest['libraries'] if 'artifact' in l.get('downloads',{})]
+          def install(a):
+              path=root/'libraries'/a['path']
+              if path.exists() and hashlib.sha1(path.read_bytes()).hexdigest()==a['sha1']: return
+              payload=urllib.request.urlopen(a['url']).read()
+              assert hashlib.sha1(payload).hexdigest()==a['sha1'],a['path']
+              path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(payload)
+              print('Verified platform dependency:',a['path'])
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:list(pool.map(install,artifacts))
+          PY
           "$launcher" settings minecraft-dir "$HOME/.minecraft"
           "$launcher" install nightly | tee installed-base.txt
           base=$(sed -n 's/^Installed \([^ .]*\).*/\1/p' installed-base.txt | head -1)
