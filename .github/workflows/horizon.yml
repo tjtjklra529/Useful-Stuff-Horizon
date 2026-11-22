@@ -53,7 +53,9 @@ jobs:
           find . -name '*.hmod' -not -path '*/.horizon/*' -print
           find . -name '*.hmod' -not -path '*/.horizon/*' -exec /tmp/horizon/target/debug/cargo-horizon-mod horizon-mod check '{}' \;
       - name: Compile against the published game SDK
-        if: always()
+        if: always() && github.repository == 'tjtjklra529/Utilitarian'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y libxkbcommon-x11-0 libasound2t64 libvulkan1
@@ -61,9 +63,16 @@ jobs:
           mkdir /tmp/launcher
           tar -xzf /tmp/launcher.tar.gz -C /tmp/launcher
           launcher=$(find /tmp/launcher -type f -name horizon-launcher | head -1)
-          "$launcher" install nightly
+          mkdir -p "$HOME/.minecraft/versions/26.3"
+          gh release download horizon-build-input-26.3-20261122 --repo tjtjklra529/Utilitarian --pattern 26.3.jar --dir "$HOME/.minecraft/versions/26.3"
+          echo 'e877b6a07acd633fb3bb475002175cec036e7b87  '"$HOME/.minecraft/versions/26.3/26.3.jar" | sha1sum -c -
+          "$launcher" settings minecraft-dir "$HOME/.minecraft"
+          "$launcher" install nightly | tee installed-base.txt
+          base=$(sed -n 's/^Installed \([^ .]*\).*/\1/p' installed-base.txt | head -1)
+          test -n "$base"
+          "$launcher" prepare --version "$base"
           set -o pipefail
-          "$launcher" native-build "$PWD/horizon" --server-output /tmp/useful-stuff-sdk-build --trust-native-code 2>&1 | tee native-build.log
+          "$launcher" native-build "$PWD/horizon" --server-output /tmp/useful-stuff-sdk-build --trust-native-code 2>&1 | tee native-build.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -72,7 +81,7 @@ jobs:
             horizon/target/horizon-mod/*.hmod
             target/horizon-mod/*.hmod
             horizon/Cargo.lock
-            native-build.log
+            native-build.txt
       - uses: actions/cache/save@v4
         if: always()
         with:
