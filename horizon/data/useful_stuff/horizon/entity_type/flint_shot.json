@@ -1,0 +1,5 @@
+{
+  "template": "minecraft:snowball",
+  "item": "useful_stuff:custom_shot",
+  "damage": 0.0
+}

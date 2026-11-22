@@ -175,7 +175,7 @@ impl UsefulStuff {
         give(h, p, ammo);
     }
     pub(super) fn tick(&self, h: &mut dyn ServerHost) {
-        let pouch = key(h, "things:torch_pouch");
+        let pouch = key(h, "useful_stuff:torch_pouch");
         let (tick, menus) = {
             let mut s = self.state.lock().unwrap();
             s.pouch = pouch;
@@ -191,6 +191,7 @@ impl UsefulStuff {
             }
         }
         self.rotate_menus(h, tick);
+        self.recover_sessions(h);
         // Expire double-click candidates. A held button emits use ticks, not new clicks.
         self.state
             .lock()
@@ -446,22 +447,29 @@ impl UsefulStuff {
         self.state.lock().unwrap().shots.extend(remaining);
         let tick = self.state.lock().unwrap().tick;
         let places = {
-            let mut s = self.state.lock().unwrap();
-            let ids = s
-                .placements
-                .iter()
-                .filter(|(_, v)| tick - v.tick > 10)
-                .map(|(k, _)| *k)
-                .collect::<Vec<_>>();
-            ids.into_iter()
-                .filter_map(|k| s.placements.remove(&k))
+            let s = self.state.lock().unwrap();
+            s.placements
+                .values()
+                .filter(|v| tick - v.tick > 10)
+                .cloned()
                 .collect::<Vec<_>>()
         };
         for pending in places {
             if let Some(p) = h.player(pending.player) {
                 if p.level(h) == Some(level) {
+                    self.state
+                        .lock()
+                        .unwrap()
+                        .placements
+                        .remove(&pending.player);
                     self.place_torch(h, p, level, pending);
                 }
+            } else if tick - pending.tick > 200 {
+                self.state
+                    .lock()
+                    .unwrap()
+                    .placements
+                    .remove(&pending.player);
             }
         }
         if tick % 4 == 0 {

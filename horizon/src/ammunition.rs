@@ -28,14 +28,17 @@ fn colored(value: impl Into<String>) -> Text {
 pub fn accepts(h: &dyn Host, s: &ItemStack, flint: bool) -> bool {
     let name = id(h, s);
     if flint {
-        matches!(name.as_str(), "minecraft:flint" | "things:custom_shot")
+        matches!(
+            name.as_str(),
+            "minecraft:flint" | "useful_stuff:custom_shot"
+        )
     } else {
         matches!(
             name.as_str(),
             "minecraft:arrow"
                 | "minecraft:tipped_arrow"
                 | "minecraft:spectral_arrow"
-                | "things:custom_arrow"
+                | "useful_stuff:custom_arrow"
         )
     }
 }
@@ -78,8 +81,8 @@ pub fn gravity(s: &ItemStack) -> f64 {
 pub fn grasp(s: &ItemStack) -> i32 {
     match component(s, "minecraft:enchantments") {
         Some(t) => match t
-            .get("things:grasping")
-            .or_else(|| t.get("levels").and_then(|l| l.get("things:grasping")))
+            .get("useful_stuff:grasping")
+            .or_else(|| t.get("levels").and_then(|l| l.get("useful_stuff:grasping")))
         {
             Some(Tag::Int(n)) => (*n).clamp(0, 4),
             _ => integer(s, "Grasping").clamp(0, 4),
@@ -147,9 +150,9 @@ pub fn modify(
     let mut out = make(
         h,
         if arrow {
-            "things:custom_arrow"
+            "useful_stuff:custom_arrow"
         } else {
-            "things:custom_shot"
+            "useful_stuff:custom_shot"
         },
         1,
     )?;
@@ -256,7 +259,7 @@ pub fn arrows(
             set_data(&mut seed, key, Tag::Double(value.to_bits()));
         }
     }
-    let mut out = make(h, "things:custom_arrow", 8)?;
+    let mut out = make(h, "useful_stuff:custom_arrow", 8)?;
     patch(
         &mut out,
         "minecraft:custom_data",

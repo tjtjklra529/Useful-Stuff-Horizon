@@ -1,7 +1,7 @@
 name: Horizon port
 on:
   push:
-    paths: ['horizon/**', '.github/workflows/horizon.yml']
+    paths: ['horizon/**', '.github/workflows/horizon.yml', 'tools/verify_horizon_review_fixes.py', 'artwork/horizon-quiver/**']
   workflow_dispatch:
 permissions: {contents: read}
 jobs:
@@ -44,6 +44,8 @@ jobs:
           with tarfile.open(fileobj=io.BytesIO(payload),mode='r:xz') as archive:
               archive.extractall('horizon/.horizon/sdk/api',filter='data')
           PY
+      - name: Verify namespace and original artwork review fixes
+        run: python3 tools/verify_horizon_review_fixes.py
       - name: Check native code and run pure unit tests
         if: github.repository != 'tjtjklra529/Utilitarian'
         run: cargo test --manifest-path horizon/Cargo.toml

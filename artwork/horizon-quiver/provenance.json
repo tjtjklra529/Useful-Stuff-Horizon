@@ -1,0 +1,10 @@
+{
+  "tool": "built-in image_gen",
+  "referenceImages": [],
+  "prompt": "Create ONE original inventory-item sprite for an independently made Minecraft-style voxel game mod: a compact quiver with two arrows, designed from scratch, NOT based on Minecraft's unused quiver or any existing game asset. The actual design must occupy an exact 16 by 16 logical pixel grid, shown large using strictly nearest-neighbor whole-number pixel scaling. Entire square canvas is the 16x16 logical grid, do not crop or add margins beyond that grid. Transparent background. Single flat 2D item icon, no scene, no text, no labels, no UI, no shadows outside sprite, no gradients or antialiasing. Original silhouette: slightly tilted rectangular dark teal waxed-canvas arrow case, warm tan leather diagonal shoulder strap, one small copper clasp on its front, two light ash-wood arrow shafts protruding from the top, cream feather fletching with a tiny rust-red accent. Easy to read at 16x16, restrained about 12-color pixel-art palette, warm darker brown and teal edge pixels instead of a solid black outline. Clear 1-pixel stepped contours. Attractive vanilla-inspired inventory polish, but entirely original geometry, layout and colors. Do not use any pre-existing sprite as reference. Keep each logical pixel uniform, square, perfectly aligned to the 16x16 grid.",
+  "sourceSha256": "e2fd0717a7cd5e74652a71dde425f4e0777f8496cd6868597e890f4676270a3a",
+  "spriteSha256": "b6c974212e34a4d0f0b8d476a2a8627e1611a59e10bf5b6b51850759258b8ad2",
+  "rejectedSpriteSha256": "ff415dc354a646fd9def0d32139dc07a93959657e76407d1db7325f9073e1680",
+  "conversion": "Nearest-neighbor to 16x16; binary alpha; 16-color FASTOCTREE palette; RGBA PNG",
+  "scope": "Horizon correction only; original Java assets unchanged"
+}

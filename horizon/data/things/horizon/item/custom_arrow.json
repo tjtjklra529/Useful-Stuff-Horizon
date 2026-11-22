@@ -1,6 +1,0 @@
-{
-  "template": "minecraft:arrow",
-  "components": {
-    "minecraft:item_model": "things:custom_arrow"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "template": "minecraft:flint",
-  "components": {
-    "minecraft:item_model": "things:custom_shot"
-  }
-}

@@ -29,4 +29,4 @@ Install the `.hmod` through Horizon's native-mod installer. Both client and serv
 
 The release must include its exact-SDK build and package-check evidence. Compiler checks and pure unit tests do not establish in-game visual or gameplay correctness. No Minecraft or Java process was launched on the author's laptop for this port.
 
-The original assets and recipes were preserved. The Horizon implementation was developed with AI assistance at the author's request. See `LICENSE.txt` and `NOTICE.md` for ownership, the Horizon publication grant and third-party attribution.
+Original recipes and eleven existing item textures were preserved. The Horizon quiver uses new original artwork, and every mod-owned registry/resource ID uses `useful_stuff:` to coexist with Things. The Horizon implementation was developed with AI assistance at the author's request. See `LICENSE.txt` and `NOTICE.md` for ownership, the Horizon publication grant and third-party attribution.

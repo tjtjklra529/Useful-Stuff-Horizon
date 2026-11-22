@@ -82,7 +82,7 @@ fn id(h: &dyn Host, s: &ItemStack) -> String {
     s.item().id(h)
 }
 fn is(h: &dyn Host, s: &ItemStack, name: &str) -> bool {
-    id(h, s) == format!("things:{name}")
+    id(h, s) == format!("useful_stuff:{name}")
 }
 fn key(h: &dyn Host, name: &str) -> Option<ItemKey> {
     h.item_key(&Identifier::parse(name).ok()?)
@@ -401,7 +401,7 @@ impl UsefulStuff {
         };
         let Some(shot) = h.spawn_projectile_from_rotation(
             living,
-            &Identifier::parse("things:flint_shot").unwrap(),
+            &Identifier::parse("useful_stuff:flint_shot").unwrap(),
             &carrier,
             0.,
             (2.4 * ammunition::speed(h, &ammo)) as f32,
@@ -431,7 +431,9 @@ impl UsefulStuff {
             at: [0.; 3],
             recover,
         });
-        let _ = p.entity().play_sound(h, "things:slingshot.fire", 0.65, 1.);
+        let _ = p
+            .entity()
+            .play_sound(h, "useful_stuff:slingshot.fire", 0.65, 1.);
     }
 }
 
@@ -593,7 +595,7 @@ impl Hooks for UsefulStuff {
         Flow::Continue
     }
     fn register(&self, r: &mut dyn Registrar, _: &RegistrationContext) {
-        let pose = r.register_arm_pose("things:slingshot_draw", true, true);
+        let pose = r.register_arm_pose("useful_stuff:slingshot_draw", true, true);
         let dust = r.particle_key("minecraft:dust");
         let mut state = self.state.lock().unwrap();
         state.pose = Some(pose);
@@ -802,7 +804,7 @@ impl Hooks for UsefulStuff {
         }
     }
     fn entity_tick_post(&self, h: &mut dyn ServerHost, e: &mut EntityTickPostEvent<'_>) {
-        if e.kind == "things:flint_shot" || e.kind == "minecraft:item" {
+        if e.kind == "useful_stuff:flint_shot" || e.kind == "minecraft:item" {
             self.restore_shot(h, e);
         } else if e.kind == "minecraft:arrow" {
             self.track_arrow(h, e.entity, e.dimension, false);
@@ -882,7 +884,7 @@ impl Hooks for UsefulStuff {
         .contains(&e.id)
         {
             if let Some(p) = e.table.get_mut("pools").and_then(|p| p.as_array_mut()) {
-                p.push(r#"{"rolls":1,"conditions":[{"condition":"minecraft:random_chance","chance":0.015}],"entries":[{"type":"minecraft:item","name":"things:enchanted_emerald_apple"}]}"#.parse().unwrap());
+                p.push(r#"{"rolls":1,"conditions":[{"condition":"minecraft:random_chance","chance":0.015}],"entries":[{"type":"minecraft:item","name":"useful_stuff:enchanted_emerald_apple"}]}"#.parse().unwrap());
             }
         }
     }

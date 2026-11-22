@@ -103,6 +103,21 @@ fn inv_slot(raw: usize, top: usize) -> Option<u32> {
 }
 impl UsefulStuff {
     pub(super) fn open(&self, h: &mut dyn ServerHost, p: PlayerRef, kind: &str, source: u32) {
+        // A closed/displaced menu may not have delivered its close callback yet.
+        // Return its owned inputs before replacing the session record.
+        let previous = self
+            .state
+            .lock()
+            .unwrap()
+            .sessions
+            .get(&p.uuid())
+            .map(|s| s.window);
+        if let Some(window) = previous {
+            self.close(h, p.uuid(), window);
+            if self.state.lock().unwrap().sessions.contains_key(&p.uuid()) {
+                return;
+            }
+        }
         let original = if source == u32::MAX {
             None
         } else {
@@ -177,6 +192,14 @@ impl UsefulStuff {
         true
     }
     pub(super) fn close(&self, h: &mut dyn ServerHost, who: u128, window: i32) {
+        // Keep custody while the player is unavailable (or cannot receive items).
+        let Some(p) = h.player(who) else { return };
+        if h.living(p.entity())
+            .and_then(|l| l.health(h))
+            .is_none_or(|hp| hp <= 0.)
+        {
+            return;
+        }
         let Some(s) = self.state.lock().unwrap().sessions.remove(&who) else {
             return;
         };
@@ -185,16 +208,34 @@ impl UsefulStuff {
             return;
         }
         if s.kind == "fletching" {
-            if let Some(p) = h.player(who) {
-                for slot in INPUT {
-                    if let Some(item) = s.slots[slot].clone() {
-                        give(h, p, item);
-                    }
+            for slot in INPUT {
+                if let Some(item) = s.slots[slot].clone() {
+                    give(h, p, item);
                 }
             }
         }
     }
+    pub(super) fn recover_sessions(&self, h: &mut dyn ServerHost) {
+        let sessions = self
+            .state
+            .lock()
+            .unwrap()
+            .sessions
+            .iter()
+            .map(|(who, s)| (*who, s.window))
+            .collect::<Vec<_>>();
+        for (who, window) in sessions {
+            if h.player(who).is_some() && h.menu(who, window).is_none() {
+                self.close(h, who, window);
+            }
+        }
+    }
     pub(super) fn menu_click(&self, h: &mut dyn ServerHost, e: &MenuClickedEvent) {
+        // Resolve transient handles before removing the only owned copy of inputs.
+        let Some(p) = h.player(e.uuid) else { return };
+        let Some(menu) = h.menu(e.uuid, e.window) else {
+            return;
+        };
         let Some(mut s) = self.state.lock().unwrap().sessions.remove(&e.uuid) else {
             return;
         };
@@ -202,10 +243,6 @@ impl UsefulStuff {
             self.state.lock().unwrap().sessions.insert(e.uuid, s);
             return;
         }
-        let Some(p) = h.player(e.uuid) else { return };
-        let Some(menu) = h.menu(e.uuid, e.window) else {
-            return;
-        };
         if s.original.is_some() && slot(h, p, s.source).as_ref() != s.original.as_ref() {
             h.close_menu(e.uuid);
             return;

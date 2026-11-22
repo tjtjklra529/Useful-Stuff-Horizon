@@ -1,0 +1,10 @@
+{
+  "template": "minecraft:beetroot",
+  "components": {
+    "minecraft:food": {
+      "nutrition": 4,
+      "saturation": 2.4
+    },
+    "minecraft:item_model": "useful_stuff:fried_egg"
+  }
+}

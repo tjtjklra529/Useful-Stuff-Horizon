@@ -1,0 +1,8 @@
+{
+  "description":{"translate":"enchantment.useful_stuff.grasping"},
+  "supported_items":"#useful_stuff:enchantable/slingshot",
+  "weight":5,"max_level":4,
+  "min_cost":{"base":8,"per_level_above_first":8},
+  "max_cost":{"base":38,"per_level_above_first":8},
+  "anvil_cost":2,"slots":["mainhand","offhand"],"effects":{}
+}
