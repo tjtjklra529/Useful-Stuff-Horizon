@@ -56,7 +56,7 @@ jobs:
           find . -name '*.hmod' -not -path '*/.horizon/*' -print
           find . -name '*.hmod' -not -path '*/.horizon/*' -exec /tmp/horizon/target/debug/cargo-horizon-mod horizon-mod check '{}' \;
       - name: Compile against the published game SDK
-        if: always() && github.repository == 'tjtjklra529/Utilitarian'
+        if: success() && github.repository == 'tjtjklra529/Utilitarian'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

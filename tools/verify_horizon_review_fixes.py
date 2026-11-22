@@ -17,7 +17,7 @@ def digest(path):
 
 def verify():
     manifest = tomllib.loads((MOD / 'horizon-mod.toml').read_text(encoding='utf-8'))
-    assert manifest['id'] == NS and manifest['namespaces'] == [NS]
+    assert manifest['id'] == NS and not manifest.get('namespaces')
     assert manifest['version'] == '0.0.1'
     assert not (MOD / 'assets/things').exists()
     assert not (MOD / 'data/things').exists()

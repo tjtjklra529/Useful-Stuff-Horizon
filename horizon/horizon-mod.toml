@@ -9,7 +9,6 @@ homepage = "https://www.curseforge.com/minecraft/mc-mods/useful-stuff-tjtjklra52
 api = "0.2"
 side = "both"
 capabilities = ["registries"]
-namespaces = ["useful_stuff"]
 
 [native]
 game = "26.3"
