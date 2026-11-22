@@ -61,6 +61,7 @@ jobs:
           mkdir /tmp/launcher
           tar -xzf /tmp/launcher.tar.gz -C /tmp/launcher
           launcher=$(find /tmp/launcher -type f -name horizon-launcher | head -1)
+          "$launcher" install v0.2.97
           set -o pipefail
           "$launcher" native-build "$PWD/horizon" --server-output /tmp/useful-stuff-sdk-build --trust-native-code 2>&1 | tee native-build.log
       - uses: actions/upload-artifact@v4
