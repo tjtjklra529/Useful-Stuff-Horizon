@@ -53,6 +53,7 @@ jobs:
           find . -name '*.hmod' -not -path '*/.horizon/*' -print
           find . -name '*.hmod' -not -path '*/.horizon/*' -exec /tmp/horizon/target/debug/cargo-horizon-mod horizon-mod check '{}' \;
       - name: Compile against the published game SDK
+        if: always()
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y libxkbcommon-x11-0 libasound2t64 libvulkan1
@@ -60,7 +61,8 @@ jobs:
           mkdir /tmp/launcher
           tar -xzf /tmp/launcher.tar.gz -C /tmp/launcher
           launcher=$(find /tmp/launcher -type f -name horizon-launcher | head -1)
-          "$launcher" native-build "$PWD/horizon" --server-output /tmp/useful-stuff-sdk-build --trust-native-code
+          set -o pipefail
+          "$launcher" native-build "$PWD/horizon" --server-output /tmp/useful-stuff-sdk-build --trust-native-code 2>&1 | tee native-build.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -69,4 +71,4 @@ jobs:
             horizon/target/horizon-mod/*.hmod
             target/horizon-mod/*.hmod
             horizon/Cargo.lock
-            /tmp/useful-stuff-sdk-build/**
+            native-build.log
