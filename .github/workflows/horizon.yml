@@ -89,8 +89,9 @@ jobs:
           base=$(sed -n 's/^Installed \([^ .]*\).*/\1/p' installed-base.txt | head -1)
           test -n "$base"
           "$launcher" prepare --version "$base"
+          python3 -m zipfile -e horizon/target/horizon-mod/useful_stuff.hmod /tmp/useful-stuff-native-source
           set -o pipefail
-          "$launcher" native-build "$PWD/horizon" --server-output /tmp/useful-stuff-sdk-build --trust-native-code 2>&1 | tee native-build.txt
+          "$launcher" native-build /tmp/useful-stuff-native-source --server-output /tmp/useful-stuff-sdk-build --trust-native-code 2>&1 | tee native-build.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
