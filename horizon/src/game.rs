@@ -184,6 +184,9 @@ impl UsefulStuff {
         };
         for (who, n) in menus {
             if let Some(p) = h.player(who) {
+                if h.menu(who, 0).is_none_or(|m| m.kind(h) != Some(None)) {
+                    continue;
+                }
                 self.open(h, p, "torch_pouch", n)
             }
         }
@@ -386,6 +389,7 @@ impl UsefulStuff {
                 let Some(entity) = h.entity(shot.entity) else {
                     continue;
                 };
+                shot.at = entity.position(h).unwrap_or(shot.at);
                 shot.waiting += 1;
                 let delay = [0, 80, 60, 40, 20][shot.grasp.clamp(0, 4) as usize];
                 if shot.waiting >= delay {

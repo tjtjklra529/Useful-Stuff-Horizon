@@ -73,3 +73,10 @@ jobs:
             target/horizon-mod/*.hmod
             horizon/Cargo.lock
             native-build.log
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            ~/.cargo/registry
+            /tmp/horizon/target
+          key: horizon-tool-f037744a-rust-1.99.1
