@@ -1,5 +1,5 @@
 {
   "template": "minecraft:snowball",
-  "item": "minecraft:flint",
+  "item": "things:custom_shot",
   "damage": 0.0
 }

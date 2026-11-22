@@ -444,6 +444,9 @@ impl UsefulStuff {
         let HostSide::Server(h) = host else {
             return None;
         };
+        if is(h, event.stack, "custom_shot") {
+            return Some(InteractionResult::Fail);
+        }
         let p = h.player(event.player)?;
         let n = held_slot(h, p, event.hand);
         if is(h, event.stack, "slingshot") {
