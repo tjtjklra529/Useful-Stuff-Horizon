@@ -65,6 +65,9 @@ jobs:
           launcher=$(find /tmp/launcher -type f -name horizon-launcher | head -1)
           mkdir -p "$HOME/.minecraft/versions/26.3"
           gh release download horizon-build-input-26.3-20261122 --repo tjtjklra529/Utilitarian --pattern 26.3.jar --dir "$HOME/.minecraft/versions/26.3"
+          gh release download horizon-build-input-26.3-20261122 --repo tjtjklra529/Utilitarian --pattern minecraft-26.3-libraries.zip --dir /tmp
+          echo 'b6b4cfd2716af6ba752703d079fc995a5dbcb98d8fb19b966ef1105d2b048a6f  /tmp/minecraft-26.3-libraries.zip' | sha256sum -c -
+          unzip -q /tmp/minecraft-26.3-libraries.zip -d "$HOME/.minecraft"
           echo 'e877b6a07acd633fb3bb475002175cec036e7b87  '"$HOME/.minecraft/versions/26.3/26.3.jar" | sha1sum -c -
           "$launcher" settings minecraft-dir "$HOME/.minecraft"
           "$launcher" install nightly | tee installed-base.txt
